@@ -1,0 +1,138 @@
+{
+    "nodelist": [
+        {
+            "nodename" : "Node1",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node5",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "5"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node2",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node3",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "2"
+                }, 
+                {
+                    "nodename" : "Node5",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "5"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node3",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node2",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node4",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node8",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "4"
+                }, 
+                {
+                    "nodename" : "Node9",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "7"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node5",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node1",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "2"
+                }, 
+                {
+                    "nodename" : "Node2",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "5"
+                },
+                {
+                    "nodename" : "Node6",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "4"
+                }, 
+                {
+                    "nodename" : "Node8",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node6",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node5",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "4"
+                }, 
+                {
+                    "nodename" : "Node7",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "1"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node7",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node6",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "1"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node8",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node4",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "4"
+                }, 
+                {
+                    "nodename" : "Node5",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node9",
+            "ip" : "192.168.112.x",
+            "connections" : [
+                {
+                    "nodename" : "Node4",
+                    "ip" : "192.168.112.x",
+                    "RTT" : "7"
+                }
+            ]
+        }
+    ]
+}
