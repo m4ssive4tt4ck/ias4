@@ -36,7 +36,7 @@ def array_to_string(array: np.ndarray):
     as_string = ""
     for part_array in array:
         for element in part_array:
-            as_string += str(element) + ","
+            as_string += str(element).replace(",", "(comma)").replace(";", "(semicolon)") + ","
         as_string = as_string[0:-1]+";"
     as_string = as_string[0:-1]
     print(as_string)
@@ -51,13 +51,14 @@ def string_to_array(message: str):
     print(array_as_list)
     for i in range(len(array_as_list)):
         array_as_list[i] = array_as_list[i].split(",")
+
     array = np.array(array_as_list, dtype=str)
     print(array)
     return array
 
 
 if __name__ == '__main__':
-    array1 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    array1 = np.array([["1,", 2, 3], [4, 5, 6], [7, 8, 9]])
     print(array1)
     match string_to_array(array_to_string(array1))[0,0]:
         case "1":
