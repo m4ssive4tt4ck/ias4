@@ -10,7 +10,8 @@ cost_array = None
 # cost_array[1, :] = destination names
 # cost_array[2, :] = path cost
 # cost_array[3, :] = next addressee
-# cost_array[4, :] = addressee address
+# cost_array[4, :] = destination ip (if directly connected)
+# cost_array[5, :] = destination port (if directly connected)
 
 
 def bellman_ford(final_destination: str, cost: int, sender_name: str) -> None:
@@ -23,18 +24,31 @@ def bellman_ford(final_destination: str, cost: int, sender_name: str) -> None:
     new_cost_smaller = int(cost_array[2, destination_index]) > new_cost
     no_connection_yet = int(cost_array[2, destination_index]) < 0
 
-    if no_connection_yet or new_cost_smaller:
-        cost_array[2, destination_index] = cost + sender_cost
-        cost_array[3, destination_index] = sender_name
+    if not no_connection_yet and not new_cost_smaller:
+        return
+
+    cost_array[2, destination_index] = cost + sender_cost
+    cost_array[3, destination_index] = sender_name
+
+    update_array = cost_array[:, destination_index[0]]
+    update_array[0, 0] = "update"
+
+    message = np_c.array_to_string(update_array)
+
+    ip_indexes = np.argwhere(cost_array[4, :] != "")
+    for ip_index in ip_indexes:
+        ip = str(cost_array[4, ip_index])
+        port = int(cost_array[5, ip_index])
+        print(ip, port)
         # TODO send to all neighbors
+        # send(message, (ip, port))
 
 
 if __name__ == '__main__':
-    cost_list = [["command", "Node1", 0, "Node1", "192.7123912"], ["message", "Node2", 5, "Node2", ".102837"],
-                 ["", "Node3", 2, "Node3", ""], ["", "Node4", -1, "", ""]]
+    cost_list = [["command", "Node1", 0, "Node1", "192.7123912", 65432], ["message", "Node2", 5, "Node2", ".102837", 65432],
+                 ["", "Node3", 2, "Node3", "", 65432], ["", "Node4", -1, "", "", 65432]]
     cost_array = np.array(cost_list).T
     print(cost_array)
     bellman_ford("Node2", 1, "Node3")
     print(cost_array)
-    np_c.string_to_array(np_c.array_to_string(cost_array))
 
