@@ -44,11 +44,13 @@ def read_network():
     f = open("network_topology_1.json")
     network = json.load(f)
     print(network)
+    for node in network["nodelist"]:
+        print(node["nodename"])
 
 
 if __name__ == '__main__':
     read_network()
-    setup_network_topology()
+    # setup_network_topology()
 
     # checks whether sufficient arguments have been provided
-    send_message()
+    # send_message()
