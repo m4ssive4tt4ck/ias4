@@ -53,7 +53,7 @@ def read_network():
         allnodes.append(nodelist[i]["nodename"])
 
     for current_node in allnodes:
-        costs = [""] * len(allnodes)
+        costs = ["-1"] * len(allnodes)
         neighbours = [""] * len(allnodes)
         ips = [""] * len(allnodes)
         ports = [""] * len(allnodes)
@@ -70,8 +70,10 @@ def read_network():
                     ports[allnodes.index(connection["nodename"])] = str(65432)
 
         all_arrays.append(np.array([first_line, allnodes, costs, neighbours, ips, ports]))
+    all_arrays[-1][0, 2] = "final"
     for array in all_arrays:
         print(array)
+    # TODO send to recipients
 
 
 if __name__ == '__main__':

@@ -7,7 +7,20 @@ import numpy_converter
 from cost_array import update as update
 from cost_array import initialize as initialize
 from cost_array import cost_array as ca
+from cost_array import pending_messages as pending
 import numpy_converter as nc
+
+own_name = ""
+all_init = False
+
+
+# sends all pending messages (pending, if the final node has not yet been initialized)
+def send_pending(server):
+    for message in pending:
+        server.connect(message[0])
+        server.send(str.encode(numpy_converter.array_to_string(message[1])))
+        server.close()
+    pending.clear()
 
 
 def start_receiver(HOST, PORT):
@@ -20,17 +33,22 @@ def start_receiver(HOST, PORT):
         conn, addr = server.accept()
         with conn:
             message_array = nc.string_to_array(conn.recv(2048).decode())
-            if message_array[0, 0] == "init":
+            if message_array[0, 0] == "reset":
                 conn.close()  # TODO: check if setup_node wird ausgeführt
+
+                global own_name
+                own_name = message_array[0, 1]
+
                 initialize(message_array)
                 print("newly initialized")
-                if message_array[0, 1] == "last":
-                    NotImplemented
+                if message_array[0, 2] == "final":
+                    send_pending(server)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
                 update(message_array)
+                send_pending(server)
             elif message_array[0, 0] == "whisper":
-                if message_array[0, 1] == HOST:
+                if message_array[0, 1] == own_name:
                     print(message_array[0, 2])
                     conn.close()
                 else:
@@ -40,7 +58,7 @@ def start_receiver(HOST, PORT):
                     next_ip = ca[destination_index[4, destination_index]]
                     next_port = int(ca[destination_index[5, destination_index]])
                     server.connect((next_ip, next_port))
-                    server.send(numpy_converter.array_to_string(message_array))
+                    server.send(str.encode(numpy_converter.array_to_string(message_array)))
                     server.close()
 
 
