@@ -1,6 +1,7 @@
 import sys
 import socket
 import json
+import numpy as np
 
 
 # pure tcp sender
@@ -43,9 +44,34 @@ def setup_network_topology():
 def read_network():
     f = open("network_topology_1.json")
     network = json.load(f)
-    print(network)
-    for node in network["nodelist"]:
-        print(node["nodename"])
+
+    nodelist = network["nodelist"]
+
+    all_arrays = []
+    allnodes = []
+    for i in range(len(nodelist)):
+        allnodes.append(nodelist[i]["nodename"])
+
+    for current_node in allnodes:
+        costs = [""] * len(allnodes)
+        neighbours = [""] * len(allnodes)
+        ips = [""] * len(allnodes)
+        ports = [""] * len(allnodes)
+        first_line = [""] * len(allnodes)
+        first_line[0] = "reset"
+        first_line[1] = current_node
+        for i in range(len(allnodes)):
+            if nodelist[i]["nodename"] == current_node:
+                for connection in nodelist[i]["connections"]:
+                    costs[allnodes.index(connection["nodename"])] = connection["RTT"]
+                    neighbours[allnodes.index(connection["nodename"])] = connection["nodename"]
+                    ips[allnodes.index(connection["nodename"])] = connection["ip"]
+                    # TODO add actual port
+                    ports[allnodes.index(connection["nodename"])] = str(65432)
+
+        all_arrays.append(np.array([first_line, allnodes, costs, neighbours, ips, ports]))
+    for array in all_arrays:
+        print(array)
 
 
 if __name__ == '__main__':
