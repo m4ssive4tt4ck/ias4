@@ -77,8 +77,9 @@ def read_network():
     i = 0
     for array in all_arrays:
         print(array)
-        message = str.encode(nc.array_to_string(array))
         print(all_addresses[i])
+        message = str.encode(nc.array_to_string(array))
+        address = all_addresses[i]
         i += 1
     # TODO send to recipients
 
