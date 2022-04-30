@@ -1,6 +1,4 @@
 import numpy as np
-import pandas as pd
-import numpy_converter as np_c
 
 
 # cost_array[0, :] = Nothing (allows for easier indexing)
