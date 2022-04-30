@@ -6,22 +6,21 @@ import numpy_converter as nc
 
 
 # pure tcp sender
+#ip and port provided via command line 
 def send_message(HOST, PORT):
-  
-    # TODO: (IP und PORT) eingabe über command line 
-
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
     server.connect((HOST, PORT))
     while True:
-        message = sys.stdin.readline("format: targetNodeName message")
+        message = sys.stdin.readline("type your message") #format: targetNodeName message 
         message = HOST + message  # VORGABE EINGABE: HOST(=sourceNode) targetNodeName message TODO: use nodename instead of IP
         server.send(message.encode('UTF-8'))
         server.close()  # close connection directly after sending message
 
 
-def setup_network_topology():
-    file = open('network_topology_1.json')
+#TODO: remove
+def setup_network_topology(network_topology):
+    file = open(network_topology) #feed network topology file ('network_topology_1.json')
     network_topology = json.load(file)  # TODO: make global variable
     allnodes = ""
 
@@ -40,8 +39,8 @@ def setup_network_topology():
 
 
 # TODO: method to give new file to setup_network_topology(file)
-def read_network():
-    f = open("network_topology_1.json")
+def read_network(network_topology):
+    f = open(network_topology) #TODO: check if it works
     network = json.load(f)
 
     nodelist = network["nodelist"]
@@ -67,23 +66,36 @@ def read_network():
                     costs[allnodes.index(connection["nodename"])] = connection["RTT"]
                     neighbours[allnodes.index(connection["nodename"])] = connection["nodename"]
                     ips[allnodes.index(connection["nodename"])] = connection["ip"]
-                    # TODO add actual port
+                    # DONE: add actual port
                     ports[allnodes.index(connection["nodename"])] = connection["port"]
 
         all_arrays.append(np.array([first_line, allnodes, costs, neighbours, ips, ports]))
     all_arrays[-1][0, 2] = "final"
     i = 0
     for array in all_arrays:
-        print(array)
-        print(all_addresses[i])
+        # print(array)
+        # print(all_addresses[i])
         message = str.encode(nc.array_to_string(array))
         address = all_addresses[i]
         i += 1
-    # TODO send to recipients
+
+        # TODO send to recipients
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
+        server.connect(address)  # TODO: print address (ip, port)
+        while True:
+            server.send("__SETUP", message)  # TODO: message to bytes ??!!
+            server.close()  # close connection directly after sending message
 
 
 if __name__ == '__main__':
-    read_network()
-    # setup_network_topology()
-    # checks whether sufficient arguments have been provided
-    # send_message()
+    if (sys.argv[1] == 'SETUP'):
+        read_network(sys.argv[2])
+    elif(sys.argv[1] == 'MESSAGE'):
+        send_message(sys.argv[2], sys.argv[2])
+    else: 
+        print("Correct usage: script SETUP <filename>")
+        print("Correct usage: script MESSAGE <source host> <source port>")
+    exit()
+    
+    #TODO: checks whether sufficient arguments have been provided
