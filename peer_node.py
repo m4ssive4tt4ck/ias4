@@ -25,7 +25,7 @@ def send_pending(server):
 
 def start_receiver(HOST, PORT):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((socket.gethostname(), 65432))  # TODO: handle ports
+    server.bind((HOST, PORT))  # TODO: handle ports
     server.listen(30)  # listens for 30 active connections
 
     while True:

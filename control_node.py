@@ -6,11 +6,9 @@ import numpy_converter as nc
 
 
 # pure tcp sender
-def send_message():
-    HOST = str(sys.stdin.readline(
-        "Who should be the source of the message"))
-    # first one to receive the message, as control_node is only for testing (IP)
-    PORT = 65432
+def send_message(HOST, PORT):
+  
+    # TODO: (IP und PORT) eingabe über command line 
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
