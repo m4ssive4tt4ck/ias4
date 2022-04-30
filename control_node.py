@@ -69,7 +69,7 @@ def read_network():
                     neighbours[allnodes.index(connection["nodename"])] = connection["nodename"]
                     ips[allnodes.index(connection["nodename"])] = connection["ip"]
                     # TODO add actual port
-                    ports[allnodes.index(connection["nodename"])] = str(65432)
+                    ports[allnodes.index(connection["nodename"])] = connection["port"]
 
         all_arrays.append(np.array([first_line, allnodes, costs, neighbours, ips, ports]))
     all_arrays[-1][0, 2] = "final"
