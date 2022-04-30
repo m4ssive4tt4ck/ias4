@@ -2,16 +2,19 @@
     "nodelist": [
         {
             "nodename" : "Node1",
-            "ip" : "192.168.112.x",
+            "ip" : "192.168.112.123",
+            "port" : "30035",
             "connections" : [
                 {
                     "nodename" : "Node2",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "5"
                 }, 
                 {
                     "nodename" : "Node3",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -19,20 +22,24 @@
         {
             "nodename" : "Node2",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node1",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "5"
                 }, 
                 {
                     "nodename" : "Node4",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "5"
                 },
                 {
                     "nodename" : "Node5",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -40,15 +47,18 @@
         {
             "nodename" : "Node3",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node1",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }, 
                 {
                     "nodename" : "Node5",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -56,25 +66,30 @@
         {
             "nodename" : "Node4",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node2",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "5"
                 }, 
                 {
                     "nodename" : "Node6",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "1"
                 },
                 {
                     "nodename" : "Node7",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "5"
                 },
                 {
                     "nodename" : "Node8",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -82,15 +97,18 @@
         {
             "nodename" : "Node5",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node2",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }, 
                 {
                     "nodename" : "Node3",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -98,20 +116,24 @@
         {
             "nodename" : "Node6",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node4",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "1"
                 }, 
                 {
                     "nodename" : "Node8",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "1"
                 },
                 {
                     "nodename" : "Node9",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -119,15 +141,18 @@
         {
             "nodename" : "Node7",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node4",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "5"
                 }, 
                 {
                     "nodename" : "Node8",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }
             ]
@@ -135,25 +160,30 @@
         {
             "nodename" : "Node8",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node4",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }, 
                 {
                     "nodename" : "Node6",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "1"
                 },
                 {
                     "nodename" : "Node7",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 },
                 {
                     "nodename" : "Node9",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "1"
                 }
             ]
@@ -161,15 +191,18 @@
         {
             "nodename" : "Node9",
             "ip" : "192.168.112.x",
+            "port" : "1234",
             "connections" : [
                 {
                     "nodename" : "Node6",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "2"
                 }, 
                 {
                     "nodename" : "Node8",
                     "ip" : "192.168.112.x",
+                    "port" : "1234",
                     "RTT" : "1"
                 }
             ]

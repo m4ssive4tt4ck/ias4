@@ -60,9 +60,9 @@ def string_to_array(message: str):
 if __name__ == '__main__':
     array1 = np.array([["1,", 2, 3], [4, 5, 6], [7, 8, 9]])
     print(array1)
-    match string_to_array(array_to_string(array1))[0,0]:
-        case "1":
-            print("case1")
+    # match string_to_array(array_to_string(array1))[0,0]:
+    #     case "1":
+    #         print("case1")
     # print(array)
     # bytes_2 = from_array_to_byte(array)
     # print(bytes_2)
