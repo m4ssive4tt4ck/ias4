@@ -2,6 +2,7 @@ import sys
 import socket
 import json
 import numpy as np
+import numpy_converter as nc
 
 
 # pure tcp sender
@@ -76,15 +77,14 @@ def read_network():
     i = 0
     for array in all_arrays:
         print(array)
+        message = str.encode(nc.array_to_string(array))
         print(all_addresses[i])
         i += 1
-
     # TODO send to recipients
 
 
 if __name__ == '__main__':
     read_network()
     # setup_network_topology()
-
     # checks whether sufficient arguments have been provided
     # send_message()
