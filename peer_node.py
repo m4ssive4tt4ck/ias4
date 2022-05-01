@@ -25,7 +25,7 @@ def send_pending(HOST, PORT):
 
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)  # to reuse address
-        server.bind((HOST, PORT + 15))  # TODO: random port --> weil mehrere nodes auf gleichem gerät laufen 
+        server.bind((HOST, PORT + 10))  # TODO: random port --> weil mehrere nodes auf gleichem gerät laufen 
         # server.listen(30)  # listens for 30 active connections
         print(message[0])
         server.connect(message[0])
