@@ -14,24 +14,24 @@ own_name = ""
 all_init = False
 
 # sends all pending messages (pending, if the final node has not yet been initialized)
-# def send_pending(HOST, PORT):
-#     i = 0
-#     for message in pending:
-#         print(i)
-#         i += 1
-#         # tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#         # tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
-#         # tcpSenderServer.bind((HOST, PORT))
+def send_pending(HOST, PORT):
+    i = 0
+    for message in pending:
+        print(i)
+        i += 1
+        # tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
+        # tcpSenderServer.bind((HOST, PORT))
 
-#         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
-#         server.bind((HOST, PORT + 15))  # TODO: random port --> weil mehrere nodes auf gleichem gerät laufen 
-#         # server.listen(30)  # listens for 30 active connections
-#         print(message[0])
-#         server.connect(message[0])
-#         server.send(str.encode(numpy_converter.array_to_string(message[1:])))
-#         server.close()
-#     pending.clear()
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)  # to reuse address
+        server.bind((HOST, PORT + 15))  # TODO: random port --> weil mehrere nodes auf gleichem gerät laufen 
+        # server.listen(30)  # listens for 30 active connections
+        print(message[0])
+        server.connect(message[0])
+        server.send(str.encode(numpy_converter.array_to_string(message[1:])))
+        server.close()
+    pending.clear()
 
 
 def start_receiver(HOST, PORT):
@@ -55,20 +55,22 @@ def start_receiver(HOST, PORT):
                 print("newly initialized")
                 if message_array[0, 2] == "final":
                     # send update to all 
-                    for message in pending: #instead of send_pending(HOST, PORT)
-                        print(message[0])
-                        server.connect(message[0])
-                        server.send(str.encode(numpy_converter.array_to_string(message[1:])))
-                        server.close() #TODO: neccessary here ?? closes only connection ...  (?)
-                    pending.clear()
+                    send_pending(HOST, PORT)
+                    # for message in pending: #instead of 
+                    #     print(message[0])
+                    #     server.connect(message[0])
+                    #     server.send(str.encode(numpy_converter.array_to_string(message[1:])))
+                    #     server.close() #TODO: neccessary here ?? closes only connection ...  (?)
+                    # pending.clear()
             elif message_array[0, 0] == "update":
                 update(message_array)
-                for message in pending: #instead of send_pending(HOST, PORT)
-                    print(message[0])
-                    server.connect(message[0])
-                    server.send(str.encode(numpy_converter.array_to_string(message[1:])))
-                    server.close() #TODO: neccessary here ?? closes only connection ...  (?)
-                pending.clear()
+                send_pending(HOST, PORT)
+                # for message in pending: #instead of send_pending(HOST, PORT)
+                #     print(message[0])
+                #     server.connect(message[0])
+                #     server.send(str.encode(numpy_converter.array_to_string(message[1:])))
+                #     server.close() #TODO: neccessary here ?? closes only connection ...  (?)
+                # pending.clear()
             elif message_array[0, 0] == "whisper":
                 if message_array[0, 1] == own_name:
                     print(message_array[0, 2])
