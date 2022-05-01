@@ -85,7 +85,6 @@ def read_network(network_topology):
         i  += 1
 
         # TODO send to recipients
-        server.settimeout(0.1)
         server.connect(address)  # TODO: print address (ip, port)
         # while True:
         server.send(message)  
