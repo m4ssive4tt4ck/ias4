@@ -74,24 +74,22 @@ def read_network(network_topology):
     i = 0
 
     
-    for array in all_arrays:
-        #print(array)
-        #print(all_addresses[i])
-        message = str.encode(nc.array_to_string(array))
-        # print(message)
-        address = all_addresses[i]
-        print(address)
-        print(address[1])
-        i  += 1
+    # for array in all_arrays:
+    #print(array)
+    #print(all_addresses[i])
+    message = str.encode(nc.array_to_string(all_arrays[3]))
+    # print(message)
+    address = ('192.168.112.113', 65433) #all_addresses[i]
+    i  += 1
 
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
-        # TODO send to recipients
-        server.connect(address)  # TODO: print address (ip, port)
-        # while True:
-        server.send(message)  
-        server.close()  # close connection directly after sending message
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
+    # TODO send to recipients
+    server.connect(address)  # TODO: print address (ip, port)
+    # while True:
+    server.send(message)  
+    server.close()  # close connection directly after sending message
 
 if __name__ == '__main__':
     if (sys.argv[1] == 'SETUP'):
