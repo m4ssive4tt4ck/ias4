@@ -9,7 +9,7 @@ import numpy_converter as nc
 #ip and port provided via command line 
 def send_message(HOST, PORT):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
+    server.bind(('192.168.112.112', 54322))  # TODO: ANPASSEN
     server.connect((HOST, PORT))
     while True:
         message = sys.stdin.readline("type your message") #format: targetNodeName message 

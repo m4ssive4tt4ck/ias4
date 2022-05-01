@@ -26,7 +26,7 @@ def send_pending(HOST, PORT):
 
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
-        server.bind((HOST, PORT))  # TODO: handle ports
+        server.bind((HOST, PORT + 15))  # TODO: random port --> weil mehrere nodes auf gleichem gerät laufen 
         # server.listen(30)  # listens for 30 active connections
         print(message[0])
         server.connect(message[0])
@@ -55,7 +55,7 @@ def start_receiver(HOST, PORT):
                 initialize(message_array)
                 print("newly initialized")
                 if message_array[0, 2] == "final":
-                    server.close()
+                    # server.close()
                     send_pending(HOST, PORT)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
