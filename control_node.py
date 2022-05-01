@@ -76,6 +76,7 @@ def read_network(network_topology):
         print(array)
         print(all_addresses[i])
         message = str.encode(nc.array_to_string(array))
+        print(message)
         address = all_addresses[i]
         i  += 1
 
