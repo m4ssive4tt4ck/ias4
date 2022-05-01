@@ -10,6 +10,10 @@ import numpy as np
 
 
 def bellman_ford(cost_array, final_destination: str, cost: int, sender_name: str) -> []:
+    print("cost_array", cost_array)
+    print("final_destination", final_destination)
+    print("cost", cost)
+    print("sender_name", sender_name)
     destination_index = np.argwhere(cost_array[1, :] == final_destination)
 
     sender_index = np.argwhere(cost_array[1, :] == sender_name)
@@ -26,9 +30,10 @@ def bellman_ford(cost_array, final_destination: str, cost: int, sender_name: str
     cost_array[3, destination_index] = sender_name
 
     update_array = cost_array[:3, destination_index[0]]
-    update_array[0, 0] = "update"
 
     print(update_array)
+    update_array[0, 0] = "update"
+
     return update_array
 
     # message = np_c.array_to_string(update_array)

@@ -15,26 +15,32 @@ all_init = False
 
 
 # sends all pending messages (pending, if the final node has not yet been initialized)
-def send_pending(server):
+def send_pending(server, HOST, PORT):
     for message in pending:
         # tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
         # tcpSenderServer.bind((HOST, PORT))
+
+        server.close()
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
+        server.bind((HOST, PORT))  # TODO: handle ports
+        # server.listen(30)  # listens for 30 active connections
         print(message[0])
         server.connect(message[0])
-        server.send(str.encode(numpy_converter.array_to_string(message[1])))
+        server.send(str.encode(numpy_converter.array_to_string(message[1:])))
         server.close()
     pending.clear()
 
 
 def start_receiver(HOST, PORT):
     print("receiving on ", HOST, " ", PORT)
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
-    server.bind((HOST, PORT))  # TODO: handle ports
-    server.listen(30)  # listens for 30 active connections
 
     while True:
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
+        server.bind((HOST, PORT))  # TODO: handle ports
+        server.listen(30)  # listens for 30 active connections
         time.sleep(0.01)
         conn, addr = server.accept()
         with conn:
@@ -48,11 +54,11 @@ def start_receiver(HOST, PORT):
                 initialize(message_array)
                 print("newly initialized")
                 if message_array[0, 2] == "final":
-                    send_pending(server)
+                    send_pending(server, HOST, PORT)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
                 update(message_array)
-                send_pending(server)
+                send_pending(server, HOST, PORT)
             elif message_array[0, 0] == "whisper":
                 if message_array[0, 1] == own_name:
                     print(message_array[0, 2])

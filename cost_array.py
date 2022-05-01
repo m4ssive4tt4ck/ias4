@@ -26,7 +26,9 @@ def initialize(init_array):
 
 def update(update_array):
     global cost_array
-    message = sp.bellman_ford(cost_array, update_array[0], int(update_array[1]), update_array[2])
+    print("message = sp.bellman_ford(cost_array, update_array[0], int(update_array[1]), update_array[2])\n")
+    print(cost_array, update_array[0])
+    message = sp.bellman_ford(cost_array, update_array[0,0], int(update_array[0,1]), update_array[0,2])
     for connection in known_connections:
         pending_messages.append((connection, message))
 
