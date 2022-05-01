@@ -77,16 +77,15 @@ def read_network(network_topology):
         # print(all_addresses[i])
         message = str.encode(nc.array_to_string(array))
         address = all_addresses[i]
-        i += 1
+        i  += 1
 
         # TODO send to recipients
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
         server.connect(address)  # TODO: print address (ip, port)
         while True:
-            server.send(message.encode())  
-            server.close()  # close connection directly after sending message
-
+            server.send(message)  
+        server.close()  # close connection directly after sending message
 
 if __name__ == '__main__':
     if (sys.argv[1] == 'SETUP'):
