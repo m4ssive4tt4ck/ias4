@@ -84,7 +84,7 @@ def read_network(network_topology):
         server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
         server.connect(address)  # TODO: print address (ip, port)
         while True:
-            server.send(message)  
+            server.send(message.encode())  
             server.close()  # close connection directly after sending message
 
 
