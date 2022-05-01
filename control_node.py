@@ -73,8 +73,8 @@ def read_network(network_topology):
     all_arrays[-1][0, 2] = "final"
     i = 0
     for array in all_arrays:
-        # print(array)
-        # print(all_addresses[i])
+        print(array)
+        print(all_addresses[i])
         message = str.encode(nc.array_to_string(array))
         address = all_addresses[i]
         i  += 1
