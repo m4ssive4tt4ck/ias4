@@ -1,7 +1,8 @@
 import numpy as np
 
 
-# cost_array[0, :] = Nothing (allows for easier indexing)
+# cost_array[0, 0] = own name
+# cost_array[0, 1:] = Nothing (allows for easier indexing)
 # cost_array[1, :] = destination names
 # cost_array[2, :] = path cost
 # cost_array[3, :] = next addressee

@@ -12,13 +12,14 @@ def initialize(init_array):
     cost_array = init_array[1:, :]
     shape = np.shape(init_array)
     cost_array = np.vstack((np.full(shape[1], ""), cost_array))
+    cost_array[0,0] = init_array[0,1]
     global known_connections
     known_connections = []
     message_arrays = []
     indexes = np.argwhere(cost_array[4, :] != "")
     for index in indexes:
         known_connections.append((str(cost_array[4, index][0]), int(cost_array[5, index])))
-        message_arrays.append(np.array(["update", cost_array[1, index], cost_array[2, index]], dtype=str))
+        message_arrays.append(np.array(["update", cost_array[1, index], cost_array[2, index], cost_array[0, 0]], dtype=str))
     for connection in known_connections:
         for message_array in message_arrays:
             pending_messages.append((connection, message_array))
@@ -28,7 +29,7 @@ def update(update_array):
     global cost_array
     print("message = sp.bellman_ford(cost_array, update_array[0], int(update_array[1]), update_array[2])\n")
     print(cost_array, update_array[0])
-    message = sp.bellman_ford(cost_array, update_array[0,0], int(update_array[0,1]), update_array[0,2])
+    message = sp.bellman_ford(cost_array, update_array[0,1], int(update_array[0,2]), update_array[0,3])
     for connection in known_connections:
         pending_messages.append((connection, message))
 
