@@ -17,13 +17,13 @@ all_init = False
 # sends all pending messages (pending, if the final node has not yet been initialized)
 def send_pending(HOST, PORT):
     for message in pending:
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
-        server.bind((HOST, PORT))
+        tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
+        tcpSenderServer.bind((HOST, PORT))
         print(message[0])
-        server.connect(message[0])
-        server.send(str.encode(numpy_converter.array_to_string(message[1])))
-        server.close()
+        tcpSenderServer.connect(message[0])
+        tcpSenderServer.send(str.encode(numpy_converter.array_to_string(message[1])))
+        tcpSenderServer.close()
     pending.clear()
 
 
@@ -41,13 +41,13 @@ def start_receiver(HOST, PORT):
             message_array = nc.string_to_array(conn.recv(2048).decode())
             if message_array[0, 0] == "reset":
                 conn.close()  # TODO: check if setup_node wird ausgeführt
+                server.close() #TODO wtffff
                 global own_name
                 own_name = message_array[0, 1]
 
                 initialize(message_array)
                 print("newly initialized")
                 if message_array[0, 2] == "final":
-                    server.close() #TODO wtfffff
                     send_pending(HOST, PORT)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
