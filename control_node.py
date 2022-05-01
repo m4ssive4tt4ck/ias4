@@ -19,23 +19,23 @@ def send_message(HOST, PORT):
 
 
 #TODO: remove
-def setup_network_topology(network_topology):
-    file = open(network_topology) #feed network topology file ('network_topology_1.json')
-    network_topology = json.load(file)  # TODO: make global variable
-    allnodes = ""
+# def setup_network_topology(network_topology):
+#     file = open(network_topology) #feed network topology file ('network_topology_1.json')
+#     network_topology = json.load(file)  # TODO: make global variable
+#     allnodes = ""
 
-    for node in network_topology['nodelist']:
-        allnodes += node['nodename'] + " "
+#     for node in network_topology['nodelist']:
+#         allnodes += node['nodename'] + " "
 
-    for node in network_topology['nodelist']:
-        print(node)
-        # send nodelist with nodenames only + whole object of node to node
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
-        server.connect((node['ip'], 65432))  # TODO: woher weiss ich den port ...
-        while True:
-            server.send("__SETUP", node.encode('UTF-8'), allnodes.encode('UTF-8'))  # TODO: check
-            server.close()  # close connection directly after sending message
+#     for node in network_topology['nodelist']:
+#         print(node)
+#         # send nodelist with nodenames only + whole object of node to node
+#         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#         server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
+#         server.connect((node['ip'], 65432))  # TODO: woher weiss ich den port ...
+#         while True:
+#             server.send("__SETUP", node.encode('UTF-8'), allnodes.encode('UTF-8'))  # TODO: check
+#             server.close()  # close connection directly after sending message
 
 
 # TODO: method to give new file to setup_network_topology(file)
