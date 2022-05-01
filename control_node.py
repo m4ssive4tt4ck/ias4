@@ -84,6 +84,7 @@ def read_network(network_topology):
         # TODO send to recipients
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        server.settimeout(0.1)
         server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
         server.connect(address)  # TODO: print address (ip, port)
         # while True:
