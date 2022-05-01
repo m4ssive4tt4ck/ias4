@@ -57,7 +57,7 @@ def start_receiver(HOST, PORT):
                     # send update to all 
                     for message in pending: #instead of send_pending(HOST, PORT)
                         print(message[0])
-                        # server.connect(message[0])
+                        server.connect(message[0])
                         server.send(str.encode(numpy_converter.array_to_string(message[1:])))
                         server.close() #TODO: neccessary here ?? closes only connection ...  (?)
                     pending.clear()
