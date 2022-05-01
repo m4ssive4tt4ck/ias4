@@ -74,10 +74,11 @@ def read_network(network_topology):
     i = 0
     for array in all_arrays:
         #print(array)
-        print(all_addresses[i])
+        #print(all_addresses[i])
         message = str.encode(nc.array_to_string(array))
         # print(message)
         address = all_addresses[i]
+        print(address)
         i  += 1
 
         # TODO send to recipients
