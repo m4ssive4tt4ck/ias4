@@ -87,7 +87,7 @@ def read_network(network_topology):
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
     # TODO send to recipients
-    server.connect(address)  # TODO: print address (ip, port)
+    server.connect(("192.168.112.113", 65433))  # TODO: print address (ip, port)
     # while True:
     server.send(message)  
     server.close()  # close connection directly after sending message
