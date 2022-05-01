@@ -81,6 +81,7 @@ def read_network(network_topology):
         # print(message)
         address = all_addresses[i]
         print(address)
+        print(address[1])
         i  += 1
 
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
