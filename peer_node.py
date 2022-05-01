@@ -41,7 +41,7 @@ def start_receiver(HOST, PORT):
             message_array = nc.string_to_array(conn.recv(2048).decode())
             if message_array[0, 0] == "reset":
                 conn.close()  # TODO: check if setup_node wird ausgeführt
-                server.close() #TODO wtffff
+               
                 global own_name
                 own_name = message_array[0, 1]
 
