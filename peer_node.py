@@ -15,15 +15,15 @@ all_init = False
 
 
 # sends all pending messages (pending, if the final node has not yet been initialized)
-def send_pending(HOST, PORT):
+def send_pending(server):
     for message in pending:
-        tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
-        tcpSenderServer.bind((HOST, PORT))
+        # tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
+        # tcpSenderServer.bind((HOST, PORT))
         print(message[0])
-        tcpSenderServer.connect(message[0])
-        tcpSenderServer.send(str.encode(numpy_converter.array_to_string(message[1])))
-        tcpSenderServer.close()
+        server.connect(message[0])
+        server.send(str.encode(numpy_converter.array_to_string(message[1])))
+        server.close()
     pending.clear()
 
 
@@ -48,11 +48,11 @@ def start_receiver(HOST, PORT):
                 initialize(message_array)
                 print("newly initialized")
                 if message_array[0, 2] == "final":
-                    send_pending(HOST, PORT)
+                    send_pending(server)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
                 update(message_array)
-                send_pending(HOST, PORT)
+                send_pending(server)
             elif message_array[0, 0] == "whisper":
                 if message_array[0, 1] == own_name:
                     print(message_array[0, 2])

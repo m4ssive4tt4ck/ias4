@@ -1,0 +1,211 @@
+{
+    "nodelist": [
+        {
+            "nodename" : "Node1",
+            "ip" : "192.168.1.137",
+            "port" : "65431",
+            "connections" : [
+                {
+                    "nodename" : "Node2",
+                    "ip" : "192.168.1.137",
+                    "port" : "65432",
+                    "RTT" : "5"
+                }, 
+                {
+                    "nodename" : "Node3",
+                    "ip" : "192.168.1.137",
+                    "port" : "65433",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node2",
+            "ip" : "192.168.1.137",
+            "port" : "65432",
+            "connections" : [
+                {
+                    "nodename" : "Node1",
+                    "ip" : "192.168.1.137",
+                    "port" : "65431",
+                    "RTT" : "5"
+                }, 
+                {
+                    "nodename" : "Node4",
+                    "ip" : "192.168.1.142",
+                    "port" : "65431",
+                    "RTT" : "5"
+                },
+                {
+                    "nodename" : "Node5",
+                    "ip" : "192.168.1.142",
+                    "port" : "65432",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node3",
+            "ip" : "192.168.1.137",
+            "port" : "65433",
+            "connections" : [
+                {
+                    "nodename" : "Node1",
+                    "ip" : "192.168.1.137",
+                    "port" : "65431",
+                    "RTT" : "2"
+                }, 
+                {
+                    "nodename" : "Node5",
+                    "ip" : "192.168.1.142",
+                    "port" : "65432",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node4",
+            "ip" : "192.168.1.142",
+            "port" : "65431",
+            "connections" : [
+                {
+                    "nodename" : "Node2",
+                    "ip" : "192.168.1.137",
+                    "port" : "65432",
+                    "RTT" : "5"
+                }, 
+                {
+                    "nodename" : "Node6",
+                    "ip" : "192.168.1.142",
+                    "port" : "65433",
+                    "RTT" : "1"
+                },
+                {
+                    "nodename" : "Node7",
+                    "ip" : "192.168.1.143",
+                    "port" : "65431",
+                    "RTT" : "5"
+                },
+                {
+                    "nodename" : "Node8",
+                    "ip" : "192.168.1.143",
+                    "port" : "65432",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node5",
+            "ip" : "192.168.1.142",
+            "port" : "65432",
+            "connections" : [
+                {
+                    "nodename" : "Node2",
+                    "ip" : "192.168.1.137",
+                    "port" : "65432",
+                    "RTT" : "2"
+                }, 
+                {
+                    "nodename" : "Node3",
+                    "ip" : "192.168.1.137",
+                    "port" : "65433",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node6",
+            "ip" : "192.168.1.142",
+            "port" : "65433",
+            "connections" : [
+                {
+                    "nodename" : "Node4",
+                    "ip" : "192.168.1.142",
+                    "port" : "65431",
+                    "RTT" : "1"
+                }, 
+                {
+                    "nodename" : "Node8",
+                    "ip" : "192.168.1.143",
+                    "port" : "65432",
+                    "RTT" : "1"
+                },
+                {
+                    "nodename" : "Node9",
+                    "ip" : "192.168.1.143",
+                    "port" : "65433",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node7",
+            "ip" : "192.168.1.143",
+            "port" : "65431",
+            "connections" : [
+                {
+                    "nodename" : "Node4",
+                    "ip" : "192.168.1.142",
+                    "port" : "65431",
+                    "RTT" : "5"
+                }, 
+                {
+                    "nodename" : "Node8",
+                    "ip" : "192.168.112.113",
+                    "port" : "65435",
+                    "RTT" : "2"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node8",
+            "ip" : "192.168.1.143",
+            "port" : "65432",
+            "connections" : [
+                {
+                    "nodename" : "Node4",
+                    "ip" : "192.168.1.142",
+                    "port" : "65431",
+                    "RTT" : "2"
+                }, 
+                {
+                    "nodename" : "Node6",
+                    "ip" : "192.168.1.142",
+                    "port" : "65433",
+                    "RTT" : "1"
+                },
+                {
+                    "nodename" : "Node7",
+                    "ip" : "192.168.1.143",
+                    "port" : "65431",
+                    "RTT" : "2"
+                },
+                {
+                    "nodename" : "Node9",
+                    "ip" : "192.168.1.143",
+                    "port" : "65433",
+                    "RTT" : "1"
+                }
+            ]
+        },
+        {
+            "nodename" : "Node9",
+            "ip" : "192.168.1.143",
+            "port" : "65433",
+            "connections" : [
+                {
+                    "nodename" : "Node6",
+                    "ip" : "192.168.1.142",
+                    "port" : "65433",
+                    "RTT" : "2"
+                }, 
+                {
+                    "nodename" : "Node8",
+                    "ip" : "192.168.1.143",
+                    "port" : "65432",
+                    "RTT" : "1"
+                }
+            ]
+        }
+    ]
+}
