@@ -47,7 +47,7 @@ def start_receiver(HOST, PORT):
         with conn:
             message_array = nc.string_to_array(conn.recv(2048).decode())
             if message_array[0, 0] == "reset":
-                server.close()  # TODO: check if setup_node wird ausgeführt
+                # conn.close()  # TODO: check if setup_node wird ausgeführt
                 global own_name
                 own_name = message_array[0, 1]
 
@@ -57,7 +57,7 @@ def start_receiver(HOST, PORT):
                     # send update to all 
                     for message in pending: #instead of send_pending(HOST, PORT)
                         print(message[0])
-                        server.connect(message[0])
+                        # server.connect(message[0])
                         server.send(str.encode(numpy_converter.array_to_string(message[1:])))
                         server.close() #TODO: neccessary here ?? closes only connection ...  (?)
                     pending.clear()
