@@ -79,7 +79,7 @@ def read_network(network_topology):
     #print(all_addresses[i])
     message = str.encode(nc.array_to_string(all_arrays[3]))
     # print(message)
-    address = ('192.168.112.113', 65433) #all_addresses[i]
+    address = ("192.168.112.113", 65433) #all_addresses[i]
     i  += 1
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
