@@ -37,13 +37,13 @@ def send_pending(HOST, PORT):
 
 def start_receiver(HOST, PORT):
     print("receiving on ", HOST, " ", PORT)
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
+    server.bind((HOST, PORT))  # TODO: handle ports
+    server.listen(30)  # listens for 30 active connections
+    time.sleep(0.01)
 
     while True:
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
-        server.bind((HOST, PORT))  # TODO: handle ports
-        server.listen(30)  # listens for 30 active connections
-        time.sleep(0.01)
         conn, addr = server.accept()
         with conn:
             message_array = nc.string_to_array(conn.recv(2048).decode())
