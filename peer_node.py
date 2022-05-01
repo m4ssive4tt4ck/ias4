@@ -15,13 +15,15 @@ all_init = False
 
 
 # sends all pending messages (pending, if the final node has not yet been initialized)
-def send_pending(server, HOST, PORT):
+def send_pending(HOST, PORT):
+    i = 0
     for message in pending:
+        print(i)
+        i += 1
         # tcpSenderServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # tcpSenderServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #to reuse address
         # tcpSenderServer.bind((HOST, PORT))
 
-        server.close()
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # to reuse address
         server.bind((HOST, PORT))  # TODO: handle ports
@@ -47,18 +49,18 @@ def start_receiver(HOST, PORT):
             message_array = nc.string_to_array(conn.recv(2048).decode())
             if message_array[0, 0] == "reset":
                 conn.close()  # TODO: check if setup_node wird ausgeführt
-               
                 global own_name
                 own_name = message_array[0, 1]
 
                 initialize(message_array)
                 print("newly initialized")
                 if message_array[0, 2] == "final":
-                    send_pending(server, HOST, PORT)
+                    server.close()
+                    send_pending(HOST, PORT)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
                 update(message_array)
-                send_pending(server, HOST, PORT)
+                send_pending(HOST, PORT)
             elif message_array[0, 0] == "whisper":
                 if message_array[0, 1] == own_name:
                     print(message_array[0, 2])
