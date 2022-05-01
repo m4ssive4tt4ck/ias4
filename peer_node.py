@@ -47,7 +47,7 @@ def start_receiver(HOST, PORT):
                 initialize(message_array)
                 print("newly initialized")
                 if message_array[0, 2] == "final":
-                    send_pending(server)
+                    send_pending(HOST, PORT)
                     # TODO send update to all
             elif message_array[0, 0] == "update":
                 update(message_array)
