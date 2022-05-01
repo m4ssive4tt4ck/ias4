@@ -85,6 +85,7 @@ def read_network(network_topology):
         server.connect(address)  # TODO: print address (ip, port)
         while True:
             server.send(message)  
+            break
         server.close()  # close connection directly after sending message
 
 if __name__ == '__main__':
