@@ -90,10 +90,8 @@ def read_network(network_topology):
 
 if __name__ == '__main__':
     if (sys.argv[1] == 'SETUP'):
-        print(sys.argv[2])
         read_network(sys.argv[2])
     elif(sys.argv[1] == 'MESSAGE'):
-        print(sys.argv[2])
         send_message(sys.argv[2], sys.argv[3])
     else: 
         print("Correct usage: script SETUP <filename>")
