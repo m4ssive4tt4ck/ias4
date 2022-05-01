@@ -72,6 +72,9 @@ def read_network(network_topology):
         all_arrays.append(np.array([first_line, allnodes, costs, neighbours, ips, ports]))
     all_arrays[-1][0, 2] = "final"
     i = 0
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
     for array in all_arrays:
         #print(array)
         #print(all_addresses[i])
@@ -82,9 +85,6 @@ def read_network(network_topology):
         i  += 1
 
         # TODO send to recipients
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        server.bind((socket.gethostname(), 54322))  # TODO: gethostname überprüfen
         server.settimeout(0.1)
         server.connect(address)  # TODO: print address (ip, port)
         # while True:
