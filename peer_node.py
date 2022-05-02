@@ -34,8 +34,9 @@ def send_pending(HOST, PORT):
         except:
             # print("in exception", message)
             pending2.append(message)
-            print("pending2: ", pending2)
-        sender_socket.close()
+            # print("pending2: ", pending2)
+        finally:
+            sender_socket.close()
     pending.clear()
     pending = pending2
 
