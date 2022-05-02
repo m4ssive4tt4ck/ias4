@@ -83,8 +83,8 @@ def start_receiver(HOST, PORT):
                 #     server.close() #TODO: neccessary here ?? closes only connection ...  (?)
                 # pending.clear()
             elif message_array[0, 0] == "whisper":
-                if message_array[0, 1] == own_name:
-                    print(message_array[0, 2])
+                if message_array[1, 0] == own_name:
+                    print(message_array[2, 0])
                     conn.close()
                 else:
                     conn.close()  # TODO: check if forward message noch aufgerufen wird

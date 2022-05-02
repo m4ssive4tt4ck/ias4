@@ -7,15 +7,24 @@ import numpy_converter as nc
 
 # pure tcp sender
 #ip and port provided via command line 
-def send_message(HOST, PORT):
+def send_message(HOST, PORT, message):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(('192.168.1.137', 54322))  # TODO: ANPASSEN
-    server.connect((HOST, PORT))
-    while True:
-        message = sys.stdin.readline("type your message") #format: targetNodeName message 
-        message = HOST + message  # VORGABE EINGABE: HOST(=sourceNode) targetNodeName message TODO: use nodename instead of IP
-        server.send(message.encode('UTF-8'))
-        server.close()  # close connection directly after sending message
+    server.connect((HOST, int(PORT)))
+    if message=="0":
+        server.send(str.encode("whisper;Node3;Node1 whispers: osjdfbosdf"))
+    elif message=="1":
+        server.send(message.encode("Node3;whisper;Node1: osjdfbosdf"))
+    elif message=="2":
+        server.send(message.encode("Node3;whisper;Node1: osjdfbosdf"))
+    elif message=="3":
+        server.send(message.encode("Node3;whisper;Node1: osjdfbosdf"))
+    server.close()
+    # while True:
+    #    message = sys.stdin.readline("type your message") #format: targetNodeName message
+    #    message = HOST + message  # VORGABE EINGABE: HOST(=sourceNode) targetNodeName message TODO: use nodename instead of IP
+    #    server.send(message.encode('UTF-8'))
+    #    server.close()  # close connection directly after sending message
 
 
 #TODO: remove
@@ -92,14 +101,15 @@ def read_network(network_topology):
         server.send(message)  
         server.close()  # close connection directly after sending message
 
+
 if __name__ == '__main__':
     if (sys.argv[1] == 'SETUP'):
         read_network(sys.argv[2])
     elif(sys.argv[1] == 'MESSAGE'):
-        send_message(sys.argv[2], sys.argv[3])
+        send_message(sys.argv[2], sys.argv[3], sys.argv[4])
     else: 
         print("Correct usage: script SETUP <filename>")
-        print("Correct usage: script MESSAGE <source host> <source port>")
+        print("Correct usage: script MESSAGE <source host> <source port> <message>")
     exit()
     
     #TODO: checks whether sufficient arguments have been provided
