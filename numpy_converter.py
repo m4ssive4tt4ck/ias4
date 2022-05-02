@@ -39,7 +39,7 @@ def array_to_string(array: np.ndarray):
             as_string += str(element).replace(",", "(comma)").replace(";", "(semicolon)") + ","
         as_string = as_string[0:-1]+";"
     as_string = as_string[0:-1]
-    print(as_string)
+    # print(as_string)
     return as_string
 
 
@@ -48,12 +48,12 @@ def array_to_string(array: np.ndarray):
 # output: numpy array
 def string_to_array(message: str):
     array_as_list = message.split(";")
-    print(array_as_list)
+    # print(array_as_list)
     for i in range(len(array_as_list)):
         array_as_list[i] = array_as_list[i].split(",")
 
     array = np.array(array_as_list, dtype=str)
-    print(array)
+    # print(array)
     return array
 
 

@@ -9,7 +9,7 @@ import numpy_converter as nc
 #ip and port provided via command line 
 def send_message(HOST, PORT):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(('192.168.112.112', 54322))  # TODO: ANPASSEN
+    server.bind(('192.168.1.137', 54322))  # TODO: ANPASSEN
     server.connect((HOST, PORT))
     while True:
         message = sys.stdin.readline("type your message") #format: targetNodeName message 
@@ -85,7 +85,7 @@ def read_network(network_topology):
 
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        server.bind(('192.168.112.112', 54322))  # TODO: FIX CODIERT --> muss auf host angepasst werden von user
+        server.bind(('192.168.1.137', 54322))  # TODO: FIX CODIERT --> muss auf host angepasst werden von user
         # TODO send to recipients
         server.connect(address)  # TODO: print address (ip, port)
         # while True:
