@@ -9,7 +9,7 @@ import numpy_converter as nc
 #ip and port provided via command line 
 def send_message(HOST, PORT, message):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(('192.168.1.137', 54322))  # TODO: ANPASSEN
+    server.bind(('192.168.112.112', 54322))  # TODO: ANPASSEN
     server.connect((HOST, int(PORT)))
     if message=="0":
         server.send(str.encode("whisper;Node3;Node1 whispers: osjdfbosdf"))
